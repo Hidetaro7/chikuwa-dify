@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
+import Icon from '../../chat/icons/chikuwa.jpg'
 import style from './style.module.css'
 
 export type AppIconProps = {
@@ -17,6 +19,7 @@ const AppIcon: FC<AppIconProps> = ({
   className,
 }) => {
   return (
+
     <span
       className={classNames(
         style.appIcon,
@@ -28,7 +31,8 @@ const AppIcon: FC<AppIconProps> = ({
         background,
       }}
     >
-      🤖
+      <Image className='rounded-full' src={Icon} alt="ちくわ" />
+
     </span>
   )
 }
