@@ -11,5 +11,14 @@ const App: FC<IMainProps> = ({
     <Main params={params} />
   )
 }
+export const metadata = {
+  icons: {
+    shortcut: ['/shortcut-icon.jpg'],
+    apple: [
+      { url: '/apple-icon.jpg' },
+      { url: '/apple-icon-x3.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+}
 
 export default React.memo(App)
