@@ -150,6 +150,7 @@ const Welcome: FC<IWelcomeProps> = ({
     if (isPublicVersion) {
       return (
         <div>
+
           <AppInfoComp siteInfo={siteInfo} />
           <TemplateVarPanel
             isFold={false}
@@ -168,6 +169,15 @@ const Welcome: FC<IWelcomeProps> = ({
         </div>
       )
     }
+
+    const videoPlay = (event: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
+      const video = event.currentTarget as HTMLVideoElement
+      if (video.paused)
+        video.play()
+      else
+        video.pause()
+    }
+
     // private version
     return (
       <TemplateVarPanel
@@ -176,7 +186,12 @@ const Welcome: FC<IWelcomeProps> = ({
           <AppInfoComp siteInfo={siteInfo} />
         }
       >
-        <ChatBtn onClick={handleChat} />
+        <div className="flex flex-col justify-center items-center">
+          <div className="my-8 max-w-52">
+            <video src="/opening-movie.mp4" playsInline poster="/icon.jpg" onClick={videoPlay} className="w-full rounded-full h-auto" />
+          </div>
+          <ChatBtn onClick={handleChat} />
+        </div>
       </TemplateVarPanel>
     )
   }
@@ -299,10 +314,12 @@ const Welcome: FC<IWelcomeProps> = ({
     <div className='relative mobile:min-h-[48px] tablet:min-h-[64px]'>
       {hasSetInputs && renderHeader()}
       <div className='mx-auto pc:w-[794px] max-w-full mobile:w-full px-3.5'>
+
         {/*  Has't set inputs  */}
         {
           !hasSetInputs && (
             <div className='mobile:pt-[72px] tablet:pt-[128px] pc:pt-[200px]'>
+
               {hasVar
                 ? (
                   renderVarPanel()
@@ -321,16 +338,6 @@ const Welcome: FC<IWelcomeProps> = ({
         {!hasSetInputs && (
           <div className='mt-4 flex justify-between items-center h-8 text-xs text-gray-400'>
 
-            {siteInfo.privacy_policy
-              ? <div>{t('app.chat.privacyPolicyLeft')}
-                <a
-                  className='text-gray-500'
-                  href={siteInfo.privacy_policy}
-                  target='_blank'>{t('app.chat.privacyPolicyMiddle')}</a>
-                {t('app.chat.privacyPolicyRight')}
-              </div>
-              : <div>
-              </div>}
             <a className='flex items-center pr-3 space-x-3' href="https://dify.ai/" target="_blank">
               <span className='uppercase'>{t('app.chat.powerBy')}</span>
               <FootLogo />
