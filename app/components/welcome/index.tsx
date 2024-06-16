@@ -188,7 +188,7 @@ const Welcome: FC<IWelcomeProps> = ({
       >
         <div className="flex flex-col justify-center items-center">
           <div className="my-8 max-w-52">
-            <video src="/opening-movie.mp4" onClick={videoPlay} className="w-full rounded-full h-auto" />
+            <video src="/opening-movie.mp4" poster="/icon.jpg" onClick={videoPlay} className="w-full rounded-full h-auto" />
           </div>
           <ChatBtn onClick={handleChat} />
         </div>
